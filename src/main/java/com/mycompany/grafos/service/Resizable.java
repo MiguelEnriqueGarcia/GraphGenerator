@@ -1,0 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package com.mycompany.grafos.service;
+
+/**
+ *
+ * @author migue
+ */
+public interface Resizable {
+    public double getSize();
+    public void resize(double factor);
+}
