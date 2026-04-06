@@ -88,5 +88,9 @@ public class Graph extends Canvas{
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
+
+    public List<PrinterService> getPrintables() {
+        return printables;
+    }
     
 }

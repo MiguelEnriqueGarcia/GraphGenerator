@@ -11,6 +11,7 @@ import com.mycompany.grafos.service.Offsetable;
 import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.service.Strokable;
 
 /**
  *
@@ -23,6 +24,7 @@ public interface LineService
         Colorable, 
         Alignable, 
         Offsetable,
-        Resizable{
+        Resizable,
+        Strokable{
     
 }

@@ -15,6 +15,7 @@ import com.mycompany.grafos.parts.LineBounds;
 import com.mycompany.grafos.parts.Position;
 import java.awt.Color;
 import com.mycompany.grafos.service.PrinterService;
+import java.awt.BasicStroke;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -50,6 +51,7 @@ public class Test005 {
                 .position(new Position(60, 60))
                 .offset(new Position(0, 20))
                 .bounds(new LineBounds(new Position(0, 0), new Position(-75, 0)))
+                .stroke(5)
                 .build();
         
         System.out.println("FINAL: " + l1.getBounds().toString());
@@ -64,7 +66,10 @@ public class Test005 {
         ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
         
         Graph g = new Graph(printables);
+        
         PrincipalFrame frame = new PrincipalFrame(g);
+        frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);
+        
         g.setBackgroundColor(Color.WHITE);
         while(true){
             g.render();

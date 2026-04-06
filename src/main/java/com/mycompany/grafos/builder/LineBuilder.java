@@ -15,6 +15,7 @@ import com.mycompany.grafos.service.Colorable;
 import com.mycompany.grafos.service.Positionable;
 import java.awt.Color;
 import com.mycompany.grafos.service.compoundService.LineService;
+import java.awt.Stroke;
 
 /**
  *
@@ -71,6 +72,11 @@ public class LineBuilder {
     
     public LineBuilder offset(Position position){
         printerService.setOffset(position);
+        return this;
+    }
+    
+    public LineBuilder stroke(double stroke){
+        printerService.setStroke(stroke);
         return this;
     }
 

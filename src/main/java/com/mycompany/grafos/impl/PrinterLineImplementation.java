@@ -10,8 +10,10 @@ import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.LineService;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 
 /**
  *
@@ -25,6 +27,7 @@ public class PrinterLineImplementation implements LineService{
     private LineAlignment alignment = new LineAlignment(LineAlignment.TypeAlignment.CENTER);
     private LineBounds lineBounds = new LineBounds(new Position(0, 0), new Position(1, 1));
     private double size = 1;
+    private double stroke = 1;
     
     public PrinterLineImplementation() {
     }
@@ -63,7 +66,13 @@ public class PrinterLineImplementation implements LineService{
     }
     
     private void printLine(Graphics2D g, int p1x, int p1y, int p2x, int p2y){
+        Stroke lastStroke = g.getStroke();
+        
+        g.setStroke(new BasicStroke((float) (stroke*size)));
+        
         g.drawLine(p1x, p1y, p2x, p2y);
+        
+        g.setStroke(lastStroke);
     }
     
     @Override
@@ -128,13 +137,22 @@ public class PrinterLineImplementation implements LineService{
     public void resize(double factor) {
         lineBounds.resize(factor, alignment);
         offset.resize(factor);
-        
         this.size = factor;
     }
 
     @Override
     public double getSize() {
         return this.size;
+    }
+
+    @Override
+    public double getStroke() {
+        return stroke;
+    }
+
+    @Override
+    public void setStroke(double stroke) {
+        this.stroke = stroke;
     }
     
 }
