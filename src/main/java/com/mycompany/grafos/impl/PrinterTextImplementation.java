@@ -1,0 +1,225 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.grafos.impl;
+
+import com.mycompany.grafos.parts.Position;
+import com.mycompany.grafos.parts.SimpleAlignment;
+import com.mycompany.grafos.parts.TextAlignment;
+import com.mycompany.grafos.parts.TextBounds;
+import com.mycompany.grafos.service.Alignment;
+import com.mycompany.grafos.service.Bounds;
+import com.mycompany.grafos.service.compoundService.TextService;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
+
+/**
+ *
+ * @author migue
+ */
+public class PrinterTextImplementation implements TextService{
+    
+    private String text = "";
+    private String formattedText = "";
+    private final int INTERLINE_SIZE = 15;
+    
+    private Color color = Color.RED;
+    private Position position = new Position(0, 0);
+    private SimpleAlignment alignment = new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER);
+    private TextBounds textBounds = new TextBounds(10, 10);
+    
+    private double size = 1;
+    private double fontSize = 12;
+    
+    public PrinterTextImplementation() {
+    }
+    
+    @Override
+    public void printMyself(Graphics2D g) {
+        g.setColor(color);
+        
+        printText(g);
+    }
+    
+    private void printText(Graphics2D g){
+//        System.out.println(fontSize);
+        
+        g.setFont(new Font("Arial", Font.PLAIN, (int) (fontSize*size)));
+        
+        applyFormatToText(g);
+        
+        int x = position.getX();
+        int y = (int) (position.getY() + 7*size*(fontSize/12));
+        
+        if (alignment.getHorizontalAlignment() == SimpleAlignment.HorizontalAlignment.CENTER) {
+            x -= textBounds.getXSize()/2;
+        }
+        if (alignment.getHorizontalAlignment() == SimpleAlignment.HorizontalAlignment.RIGHT) {
+            x -= textBounds.getXSize();
+        }
+        if (alignment.getVerticalAlignment()== SimpleAlignment.VerticalAlignment.CENTER) {
+            y -= textBounds.getYSize()/2 - 4*size*(fontSize/12);
+        }
+        if (alignment.getVerticalAlignment() == SimpleAlignment.VerticalAlignment.UP) {
+            y -= textBounds.getYSize();
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < formattedText.length(); i++) {
+            char actualChar = formattedText.charAt(i);
+            
+            if (actualChar == '%') {
+                drawString(g, x, y, sb.toString());
+                sb = new StringBuilder();
+                y += INTERLINE_SIZE * size * (fontSize/12);
+            }else{
+                sb.append(actualChar);
+            }
+        }
+    
+    }
+    
+    private void applyFormatToText(Graphics2D g) {
+        FontMetrics fm = g.getFontMetrics();
+        
+        int width = fm.stringWidth(text);
+        int height = fm.getHeight();
+        
+        if (width == 0 || height == 0) {
+            formattedText = "";
+            return;
+        }
+        
+        int linesNeeded = Math.ceilDiv(width, textBounds.getXSize());
+        int maxLines = Math.floorDiv(textBounds.getYSize(), height);
+        
+        if (maxLines == 0) {
+            formattedText = "";
+            return;
+        }
+        
+//        System.out.println(width + " , " + height + "                              : lines needed = " + linesNeeded + " , and max lines = " + maxLines);
+        
+        StringBuilder sb = new StringBuilder("");
+        StringBuilder innerSb = new StringBuilder("");
+        
+        int lineCounter = 0;
+        int charNumber = 0;
+        while(charNumber < text.length() && lineCounter < maxLines){
+            innerSb = new StringBuilder();
+            while(fm.stringWidth(innerSb.toString()) < textBounds.getXSize() && charNumber < text.length()){
+                innerSb.append(text.charAt(charNumber));
+                charNumber++;
+            }
+            sb.append(innerSb.toString());
+            lineCounter++;
+            
+            sb.append("%");
+            
+        }
+        
+        if (charNumber < text.length()) {
+            if (sb.length() >= 3) {
+                sb
+                    .deleteCharAt(sb.lastIndexOf("%"))
+                    .deleteCharAt(sb.length()-1)
+                    .deleteCharAt(sb.length()-1)
+                    .deleteCharAt(sb.length()-1)
+                    .append("...%");
+            }else{
+                sb = new StringBuilder("...%");
+            }
+        }
+        
+        formattedText = sb.toString();
+    }
+    
+    private void drawString(Graphics2D g, int x, int y, String text) {
+        g.drawString(text, x, y);
+    }
+    
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public Bounds getBounds() {
+        return textBounds;
+    }
+
+    @Override
+    public void setBounds(Bounds bounds) {
+        if (bounds instanceof TextBounds) {
+            this.textBounds = (TextBounds) bounds;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect bounds to a Line Printer Implementation");
+        }
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    @Override
+    public void setAlignment(Alignment alignment) {
+        if (alignment instanceof SimpleAlignment) {
+            this.alignment = (SimpleAlignment) alignment;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect Alignment to a Line Printer Implementation");
+        }
+    }
+
+    @Override
+    public void resize(double factor) {
+        this.size = factor;
+        textBounds.resize(factor);
+    }
+
+    @Override
+    public double getSize() {
+        return this.size;
+    }
+
+    @Override
+    public String getText() {
+        return text;
+    }
+
+    @Override
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public double getFontSize() {
+        return fontSize;
+    }
+
+    @Override
+    public void resizeFont(double fontSize) {
+        this.fontSize = fontSize;
+    }
+    
+}

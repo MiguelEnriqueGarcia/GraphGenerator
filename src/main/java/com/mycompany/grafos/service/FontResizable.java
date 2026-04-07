@@ -8,7 +8,7 @@ package com.mycompany.grafos.service;
  *
  * @author migue
  */
-public interface Resizable {
-    public double getSize();
-    public void resize(double fontSize);
+public interface FontResizable {
+    public double getFontSize();
+    public void resizeFont(double fontSize);
 }

@@ -6,6 +6,7 @@ package com.mycompany.grafos.graphcomponents;
 
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
 import com.mycompany.grafos.parts.Position;
+import com.mycompany.grafos.service.FontResizable;
 import com.mycompany.grafos.service.Positionable;
 import java.awt.Graphics2D;
 import com.mycompany.grafos.service.PrinterService;
@@ -17,11 +18,12 @@ import java.util.LinkedList;
  * @author migue
  */
 
-public class ComplexComp implements PrinterService, Positionable, Resizable{
+public class ComplexComp implements PrinterService, Positionable, Resizable, FontResizable{
     
     private LinkedList<PrinterService> printers = new LinkedList<>();
     private Position position;
     private double size = 1;
+    private double fontSize = 12;
 
     public ComplexComp() {
     }
@@ -66,6 +68,22 @@ public class ComplexComp implements PrinterService, Positionable, Resizable{
     @Override
     public double getSize() {
         return size;
+    }
+
+    @Override
+    public double getFontSize() {
+        return fontSize;
+    }
+
+    @Override
+    public void resizeFont(double fontSize) {
+        printers.forEach(p -> {
+            if (p instanceof FontResizable) {
+                ((FontResizable)p).resizeFont(fontSize);
+            }
+        });
+        
+        this.fontSize = fontSize;
     }
     
 }

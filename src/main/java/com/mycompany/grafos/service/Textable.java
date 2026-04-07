@@ -4,11 +4,12 @@
  */
 package com.mycompany.grafos.service;
 
+
 /**
  *
  * @author migue
  */
-public interface Resizable {
-    public double getSize();
-    public void resize(double fontSize);
+public interface Textable {
+    public String getText();
+    public void setText(String alignment);
 }
