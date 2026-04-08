@@ -11,6 +11,7 @@ import com.mycompany.grafos.parts.TextBounds;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.TextService;
+import com.mycompany.grafos.utils.TextFormatter;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -47,12 +48,10 @@ public class PrinterTextImplementation implements TextService{
     }
     
     private void printText(Graphics2D g){
-//        System.out.println(fontSize);
         
         g.setFont(new Font("Arial", Font.PLAIN, (int) (fontSize*size)));
         
         applyFormatToText(g);
-        
         int x = position.getX();
         int y = (int) (position.getY() + 7*size*(fontSize/12));
         
@@ -85,58 +84,13 @@ public class PrinterTextImplementation implements TextService{
     }
     
     private void applyFormatToText(Graphics2D g) {
-        FontMetrics fm = g.getFontMetrics();
+        TextFormatter formatter = new TextFormatter(g.getFontMetrics(), text, textBounds);
         
-        int width = fm.stringWidth(text);
-        int height = fm.getHeight();
-        
-        if (width == 0 || height == 0) {
+        if (formatter.isFormattable()) {
+            formattedText = formatter.format();
+        }else{
             formattedText = "";
-            return;
         }
-        
-        int linesNeeded = Math.ceilDiv(width, textBounds.getXSize());
-        int maxLines = Math.floorDiv(textBounds.getYSize(), height);
-        
-        if (maxLines == 0) {
-            formattedText = "";
-            return;
-        }
-        
-//        System.out.println(width + " , " + height + "                              : lines needed = " + linesNeeded + " , and max lines = " + maxLines);
-        
-        StringBuilder sb = new StringBuilder("");
-        StringBuilder innerSb = new StringBuilder("");
-        
-        int lineCounter = 0;
-        int charNumber = 0;
-        while(charNumber < text.length() && lineCounter < maxLines){
-            innerSb = new StringBuilder();
-            while(fm.stringWidth(innerSb.toString()) < textBounds.getXSize() && charNumber < text.length()){
-                innerSb.append(text.charAt(charNumber));
-                charNumber++;
-            }
-            sb.append(innerSb.toString());
-            lineCounter++;
-            
-            sb.append("%");
-            
-        }
-        
-        if (charNumber < text.length()) {
-            if (sb.length() >= 3) {
-                sb
-                    .deleteCharAt(sb.lastIndexOf("%"))
-                    .deleteCharAt(sb.length()-1)
-                    .deleteCharAt(sb.length()-1)
-                    .deleteCharAt(sb.length()-1)
-                    .append("...%");
-            }else{
-                sb = new StringBuilder("...%");
-            }
-        }
-        
-        formattedText = sb.toString();
     }
     
     private void drawString(Graphics2D g, int x, int y, String text) {

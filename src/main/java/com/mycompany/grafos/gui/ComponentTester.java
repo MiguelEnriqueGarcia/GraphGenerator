@@ -25,6 +25,7 @@ public class ComponentTester extends javax.swing.JPanel {
         this.add(graph);
         applyPosition();
         applyScale();
+        applyTextScale();
         
         owner.repaint();
     }
