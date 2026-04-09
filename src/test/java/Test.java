@@ -1,5 +1,5 @@
 
-import com.mycompany.grafos.graphcomponents.Circle;
+import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
 import com.mycompany.grafos.gui.Graph;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;

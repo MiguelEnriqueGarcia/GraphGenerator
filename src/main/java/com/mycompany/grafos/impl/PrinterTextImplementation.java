@@ -41,13 +41,13 @@ public class PrinterTextImplementation implements TextService{
     }
     
     @Override
-    public void printMyself(Graphics2D g) {
+    public void printMyself(Graphics2D g, Position globalOffset) {
         g.setColor(color);
         
-        printText(g);
+        printText(g, globalOffset);
     }
     
-    private void printText(Graphics2D g){
+    private void printText(Graphics2D g, Position globalOffset){
         
         g.setFont(new Font("Arial", Font.PLAIN, (int) (fontSize*size)));
         
@@ -67,6 +67,9 @@ public class PrinterTextImplementation implements TextService{
         if (alignment.getVerticalAlignment() == SimpleAlignment.VerticalAlignment.UP) {
             y -= textBounds.getYSize();
         }
+        
+        x += globalOffset.getX();
+        y += globalOffset.getY();
         
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < formattedText.length(); i++) {

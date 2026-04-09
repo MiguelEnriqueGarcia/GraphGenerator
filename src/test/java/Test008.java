@@ -32,11 +32,35 @@ import java.awt.BasicStroke;
  *
  * @author migue
  */
-public class Test007 {
+public class Test008 {
     public static void main(String[] args) {
         PrinterService[] printables = new PrinterService[1];
 
         
+        ComplexComp complex1 = getComplex(new Position(0, 0));
+        ComplexComp complex2 = getComplex(new Position(10, 10));
+        
+        ComplexComp complexMixed = new ComplexCompBuilder()
+                .addPrinter(complex1)
+                .addPrinter(complex2)
+                .build();
+        
+        printables[0] = complexMixed;
+        
+        Graph g = new Graph(printables);
+        
+        PrincipalFrame frame = new PrincipalFrame(g);
+        frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);
+        
+        g.setBackgroundColor(Color.WHITE);
+        while(true){
+            g.render();
+//            ((ComplexComp)printables[0]).setPosition(new Position((int)(Math.random()*500)+100, (int)(Math.random()*500)+100));
+        }
+        
+    }
+
+    private static ComplexComp getComplex(Position offset) {
         Circle c1 =         new CircleBuilder()
                         .color(Color.GRAY)
                         .alignment(new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER))
@@ -75,27 +99,18 @@ public class Test007 {
                         .bounds(new TextBounds(70, 30))
                         .build();
         
-        printables[0] = new ComplexCompBuilder()
+        ComplexComp complex = new ComplexCompBuilder()
                 .addPrinter(c1)
                 .addPrinter(c2)
                 .addPrinter(l1)
                 .addPrinter(r)
                 .addPrinter(t)
+                .offset(offset)
                 .build();
         
-        ((ComplexComp)printables[0]).resize(2);
-        ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
+        complex.resize(2);
+        complex.setPosition(new Position(300, 300));
         
-        Graph g = new Graph(printables);
-        
-        PrincipalFrame frame = new PrincipalFrame(g);
-        frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);
-        
-        g.setBackgroundColor(Color.WHITE);
-        while(true){
-            g.render();
-//            ((ComplexComp)printables[0]).setPosition(new Position((int)(Math.random()*500)+100, (int)(Math.random()*500)+100));
-        }
-        
+        return complex;
     }
 }

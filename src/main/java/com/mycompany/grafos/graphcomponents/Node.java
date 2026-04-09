@@ -1,42 +1,59 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.grafos.graphcomponents;
 
-import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
 import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.builder.LineBuilder;
 import com.mycompany.grafos.builder.RectangleBuilder;
 import com.mycompany.grafos.builder.TextBuilder;
-import com.mycompany.grafos.gui.Graph;
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.simplecomponents.ComplexComp;
-import com.mycompany.grafos.simplecomponents.Line;
-import com.mycompany.grafos.simplecomponents.Rectangle;
-import com.mycompany.grafos.simplecomponents.Text;
-import com.mycompany.grafos.gui.PrincipalFrame;
-import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.LineAlignment;
 import com.mycompany.grafos.parts.LineBounds;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.parts.RectangleBounds;
+import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.TextBounds;
-import java.awt.Color;
+import com.mycompany.grafos.service.Colorable;
+import com.mycompany.grafos.service.FontResizable;
+import com.mycompany.grafos.service.Offsetable;
+import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
-import java.awt.BasicStroke;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.simplecomponents.Circle;
+import com.mycompany.grafos.simplecomponents.ComplexComp;
+import com.mycompany.grafos.simplecomponents.Line;
+import com.mycompany.grafos.simplecomponents.Rectangle;
+import com.mycompany.grafos.simplecomponents.Text;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import lombok.experimental.Delegate;
 
 /**
  *
  * @author migue
  */
-public class Test007 {
-    public static void main(String[] args) {
-        PrinterService[] printables = new PrinterService[1];
-
+public class Node implements Colorable, PrinterService, Positionable, Resizable, FontResizable, Offsetable {
+    
+    @Delegate
+    private ComplexComp printable;
+    private Position localPosition;
+    private String text;
+    private int grade;
+    private int radius;
+    private Color color;
+    
+    public Node(Position localPosition){
+        this.localPosition = localPosition;
         
+        printable = getNodePrintable(this.localPosition);
+        
+        
+    }
+
+    private static ComplexComp getNodePrintable(Position offset) {
         Circle c1 =         new CircleBuilder()
                         .color(Color.GRAY)
                         .alignment(new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER))
@@ -75,27 +92,29 @@ public class Test007 {
                         .bounds(new TextBounds(70, 30))
                         .build();
         
-        printables[0] = new ComplexCompBuilder()
+        ComplexComp complex = new ComplexCompBuilder()
                 .addPrinter(c1)
                 .addPrinter(c2)
                 .addPrinter(l1)
                 .addPrinter(r)
                 .addPrinter(t)
+                .offset(offset)
                 .build();
         
-        ((ComplexComp)printables[0]).resize(2);
-        ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
+        complex.resize(2);
+        complex.setPosition(new Position(300, 300));
         
-        Graph g = new Graph(printables);
-        
-        PrincipalFrame frame = new PrincipalFrame(g);
-        frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);
-        
-        g.setBackgroundColor(Color.WHITE);
-        while(true){
-            g.render();
-//            ((ComplexComp)printables[0]).setPosition(new Position((int)(Math.random()*500)+100, (int)(Math.random()*500)+100));
-        }
-        
+        return complex;
     }
+    
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
 }

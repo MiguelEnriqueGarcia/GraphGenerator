@@ -4,6 +4,7 @@
  */
 package com.mycompany.grafos.service;
 
+import com.mycompany.grafos.parts.Position;
 import java.awt.Graphics2D;
 
 /**
@@ -12,6 +13,11 @@ import java.awt.Graphics2D;
  */
 public interface PrinterService {
 
-    public void printMyself(Graphics2D g);
+    public default void printMyself(Graphics2D g)
+    {
+        printMyself(g, new Position(0,0));
+    }
+    
+    public void printMyself(Graphics2D g, Position globalOffset);
     
 }

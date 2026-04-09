@@ -4,8 +4,9 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.graphcomponents.Circle;
-import com.mycompany.grafos.graphcomponents.ComplexComp;
+import com.mycompany.grafos.simplecomponents.Circle;
+import com.mycompany.grafos.simplecomponents.ComplexComp;
+import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.service.PrinterService;
 import java.awt.Color;
 
@@ -26,6 +27,13 @@ public class ComplexCompBuilder {
         
         return this;
     }
+    
+    public ComplexCompBuilder offset(Position position){
+        c.setOffset(position);
+        
+        return this;
+    }
+    
     public ComplexComp build(){
         return c;
     }

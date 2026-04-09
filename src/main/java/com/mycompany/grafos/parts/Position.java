@@ -24,6 +24,10 @@ public final class Position implements Resizable{
         return new Position(x, y);
     }
     
+    public Position move(Position posAdder){
+        return move(posAdder.getX(), posAdder.getY());
+    }
+    
     public Position move(int xAdder, int yAdder){
         return new Position(x + xAdder, y + yAdder);
     }

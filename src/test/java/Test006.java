@@ -1,5 +1,5 @@
 
-import com.mycompany.grafos.graphcomponents.Circle;
+import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
 import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.builder.LineBuilder;
@@ -7,10 +7,10 @@ import com.mycompany.grafos.builder.RectangleBuilder;
 import com.mycompany.grafos.builder.TextBuilder;
 import com.mycompany.grafos.gui.Graph;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.graphcomponents.ComplexComp;
-import com.mycompany.grafos.graphcomponents.Line;
-import com.mycompany.grafos.graphcomponents.Rectangle;
-import com.mycompany.grafos.graphcomponents.Text;
+import com.mycompany.grafos.simplecomponents.ComplexComp;
+import com.mycompany.grafos.simplecomponents.Line;
+import com.mycompany.grafos.simplecomponents.Rectangle;
+import com.mycompany.grafos.simplecomponents.Text;
 import com.mycompany.grafos.gui.PrincipalFrame;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;

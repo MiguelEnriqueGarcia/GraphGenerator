@@ -12,5 +12,5 @@ import com.mycompany.grafos.parts.Position;
  */
 public interface Offsetable {
     public void setOffset(Position offset);
-    public Position setOffset();
+    public Position getOffset();
 }
