@@ -12,6 +12,7 @@ import com.mycompany.grafos.service.Positionable;
 import java.awt.Graphics2D;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.service.compoundService.ComplexCompService;
 import java.util.LinkedList;
 
 /**
@@ -19,7 +20,7 @@ import java.util.LinkedList;
  * @author migue
  */
 
-public class ComplexComp implements PrinterService, Positionable, Resizable, FontResizable, Offsetable{
+public class ComplexComp implements ComplexCompService{
     
     private LinkedList<PrinterService> printers = new LinkedList<>();
     private Position position;

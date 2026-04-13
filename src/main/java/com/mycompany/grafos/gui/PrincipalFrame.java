@@ -15,9 +15,9 @@ public class PrincipalFrame extends JFrame{
 
     public enum SETUP_TYPES {SIMPLE, COMPONENT_TESTER}
     
-    private Graph graph;
+    private GraphCanvas graph;
     
-    public PrincipalFrame(Graph graph) {
+    public PrincipalFrame(GraphCanvas graph) {
         super("Simulación 2D");
         
         this.graph = graph;
@@ -39,7 +39,7 @@ public class PrincipalFrame extends JFrame{
         }
     }
 
-    public Graph getGraph() {
+    public GraphCanvas getGraph() {
         return graph;
     }
     

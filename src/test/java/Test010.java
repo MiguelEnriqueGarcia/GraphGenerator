@@ -7,7 +7,7 @@ import com.mycompany.grafos.builder.RectangleBuilder;
 import com.mycompany.grafos.builder.TextBuilder;
 import com.mycompany.grafos.graphcomponents.GraphComp;
 import com.mycompany.grafos.graphcomponents.Node;
-import com.mycompany.grafos.gui.Graph;
+import com.mycompany.grafos.gui.GraphCanvas;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
 import com.mycompany.grafos.simplecomponents.ComplexComp;
 import com.mycompany.grafos.simplecomponents.Line;
@@ -52,7 +52,7 @@ public class Test010 {
         
         printables[0] = graph;
         
-        Graph g = new Graph(printables);
+        GraphCanvas g = new GraphCanvas(printables);
         
         PrincipalFrame frame = new PrincipalFrame(g);
         frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);

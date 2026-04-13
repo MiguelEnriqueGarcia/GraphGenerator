@@ -1,7 +1,7 @@
 
 import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
-import com.mycompany.grafos.gui.Graph;
+import com.mycompany.grafos.gui.GraphCanvas;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;
@@ -38,7 +38,7 @@ public class Test {
                         .bounds(new CircleBounds(30, 30))
                         .build();
         
-        Graph g = new Graph(printables);
+        GraphCanvas g = new GraphCanvas(printables);
         while(true){
             g.render();
         }

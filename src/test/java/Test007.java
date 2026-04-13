@@ -5,7 +5,7 @@ import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.builder.LineBuilder;
 import com.mycompany.grafos.builder.RectangleBuilder;
 import com.mycompany.grafos.builder.TextBuilder;
-import com.mycompany.grafos.gui.Graph;
+import com.mycompany.grafos.gui.GraphCanvas;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
 import com.mycompany.grafos.simplecomponents.ComplexComp;
 import com.mycompany.grafos.simplecomponents.Line;
@@ -86,7 +86,7 @@ public class Test007 {
         ((ComplexComp)printables[0]).resize(2);
         ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
         
-        Graph g = new Graph(printables);
+        GraphCanvas g = new GraphCanvas(printables);
         
         PrincipalFrame frame = new PrincipalFrame(g);
         frame.setUp(PrincipalFrame.SETUP_TYPES.COMPONENT_TESTER);

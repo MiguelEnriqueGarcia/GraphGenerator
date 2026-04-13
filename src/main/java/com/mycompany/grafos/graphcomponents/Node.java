@@ -22,6 +22,7 @@ import com.mycompany.grafos.service.Offsetable;
 import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.service.compoundService.NodeService;
 import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.simplecomponents.ComplexComp;
 import com.mycompany.grafos.simplecomponents.Line;
@@ -35,7 +36,7 @@ import lombok.experimental.Delegate;
  *
  * @author migue
  */
-public class Node implements Colorable, PrinterService, Positionable, Resizable, FontResizable, Offsetable {
+public class Node implements NodeService {
     
     @Delegate
     private ComplexComp printable;

@@ -11,6 +11,8 @@ import com.mycompany.grafos.service.Offsetable;
 import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.service.compoundService.ComplexCompService;
+import com.mycompany.grafos.service.compoundService.GraphCompService;
 import com.mycompany.grafos.simplecomponents.ComplexComp;
 import java.awt.Graphics2D;
 import java.util.List;
@@ -20,11 +22,11 @@ import lombok.experimental.Delegate;
  *
  * @author migue
  */
-public class GraphComp implements PrinterService, Positionable, Resizable, FontResizable, Offsetable{
+public class GraphComp implements GraphCompService{
     private List<Node> nodes;
     private Position localPosition = new Position(1000, 0);
     @Delegate
-    private ComplexComp graphPrinter;
+    private ComplexCompService graphPrinter;
     
     public GraphComp(List<Node> nodes){
         this.nodes = nodes;

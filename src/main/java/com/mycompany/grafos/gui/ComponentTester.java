@@ -18,7 +18,7 @@ public class ComponentTester extends javax.swing.JPanel {
     
     private PrincipalFrame owner;
     
-    public ComponentTester(PrincipalFrame owner, Graph graph) {
+    public ComponentTester(PrincipalFrame owner, GraphCanvas graph) {
         initComponents();
         this.owner = owner;
         
