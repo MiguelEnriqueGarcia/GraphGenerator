@@ -3,8 +3,10 @@ import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
 import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.builder.LineBuilder;
+import com.mycompany.grafos.builder.NodeBuilder;
 import com.mycompany.grafos.builder.RectangleBuilder;
 import com.mycompany.grafos.builder.TextBuilder;
+import com.mycompany.grafos.graphcomponents.GraphComp;
 import com.mycompany.grafos.graphcomponents.Node;
 import com.mycompany.grafos.gui.GraphCanvas;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
@@ -22,7 +24,10 @@ import com.mycompany.grafos.parts.RectangleBounds;
 import com.mycompany.grafos.parts.TextBounds;
 import java.awt.Color;
 import com.mycompany.grafos.service.PrinterService;
+import com.mycompany.grafos.service.compoundService.NodeService;
 import java.awt.BasicStroke;
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -33,19 +38,35 @@ import java.awt.BasicStroke;
  *
  * @author migue
  */
-public class Test009 {
+public class Test011 {
     public static void main(String[] args) {
         PrinterService[] printables = new PrinterService[1];
         
-        Node node = new Node(new Position(0, 0), 0, 0, "", Color.BLACK, null);
-        Node node2 = new Node(new Position(100, 0), 0, 0, "", Color.BLACK, null);
+        List<NodeService> nodes = new LinkedList<>(){{
+            
+            
+            
+            for (int i = 0; i < 50; i++) {
+                
+                NodeService node = new NodeBuilder()
+                                .text("Hola")
+                                .grade(1)
+                                .color(new Color(180, 255, 180))
+                                .position(new Position((int) (Math.random()*3000-500), (int) (Math.random()*3000-500)))
+                                .build();
+                
+                
+                
+                add(node);
+            }
+            
+            
+        }};
         
-        ComplexComp nodes = new ComplexCompBuilder()
-                .addPrinter(node)
-                .addPrinter(node2)
-                .build();
+        GraphComp graph = new GraphComp(nodes);
         
-        printables[0] = nodes;
+        
+        printables[0] = graph;
         
         GraphCanvas g = new GraphCanvas(printables);
         

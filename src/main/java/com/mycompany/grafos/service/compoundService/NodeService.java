@@ -4,7 +4,9 @@
  */
 package com.mycompany.grafos.service.compoundService;
 
+import com.mycompany.grafos.service.Centerable;
 import com.mycompany.grafos.service.Colorable;
+import java.util.List;
 
 /**
  *
@@ -12,6 +14,14 @@ import com.mycompany.grafos.service.Colorable;
  */
 public interface NodeService 
         extends ComplexCompService,
+        Centerable,
         Colorable {
     
+    void setText(String text);
+    void setGrade(int grade);
+    void setRadius(int radius);
+    void setRelations(List<RelationService> relations);
+    void addRelation(RelationService relation);
+    void addRelations(List<RelationService> relations);
+    List<RelationService> getRelations();
 }
