@@ -4,7 +4,7 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.graphcomponents.Line;
+import com.mycompany.grafos.simplecomponents.Line;
 import com.mycompany.grafos.impl.PrinterLineImplementation;
 import com.mycompany.grafos.parts.LineAlignment;
 import com.mycompany.grafos.parts.LineBounds;

@@ -21,14 +21,14 @@ import com.mycompany.grafos.service.PrinterService;
  *
  * @author migue
  */
-public class Graph extends Canvas{
+public class GraphCanvas extends Canvas{
     
     private BufferStrategy bs;
     private Graphics2D g;
     private List<PrinterService> printables;
     private Color backgroundColor;
     
-    public Graph(PrinterService ... printables) {
+    public GraphCanvas(PrinterService ... printables) {
         this.printables = new LinkedList<>();
         Arrays.stream(printables).forEach(u -> this.printables.add(u));
         

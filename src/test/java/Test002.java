@@ -1,12 +1,12 @@
 
-import com.mycompany.grafos.graphcomponents.Circle;
+import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.builder.CircleBuilder;
 import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.builder.LineBuilder;
-import com.mycompany.grafos.gui.Graph;
+import com.mycompany.grafos.gui.GraphCanvas;
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.graphcomponents.ComplexComp;
-import com.mycompany.grafos.graphcomponents.Line;
+import com.mycompany.grafos.simplecomponents.ComplexComp;
+import com.mycompany.grafos.simplecomponents.Line;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.LineAlignment;
@@ -54,7 +54,7 @@ public class Test002 {
         printables[0] = new ComplexCompBuilder().addPrinter(c1).addPrinter(c2).addPrinter(l1).build();
         ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
         
-        Graph g = new Graph(printables);
+        GraphCanvas g = new GraphCanvas(printables);
         g.setBackgroundColor(Color.WHITE);
         while(true){
             g.render();

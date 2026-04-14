@@ -20,12 +20,25 @@ public final class Position implements Resizable{
         this.y = y;
     }
     
+    public Position(int x, int y, double size) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
+    
     public Position copy(){
-        return new Position(x, y);
+        return new Position(x, y, size);
+    }
+    
+    public Position move(Position posAdder){
+        return move(posAdder.getX(), posAdder.getY());
     }
     
     public Position move(int xAdder, int yAdder){
         return new Position(x + xAdder, y + yAdder);
+    }
+    public Position dot(double factor){
+        return new Position((int)( x * factor),(int)( y * factor));
     }
 
     public int getX() {

@@ -5,8 +5,8 @@
 package com.mycompany.grafos.builder;
 
 import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.graphcomponents.Circle;
-import com.mycompany.grafos.graphcomponents.Text;
+import com.mycompany.grafos.simplecomponents.Circle;
+import com.mycompany.grafos.simplecomponents.Text;
 import com.mycompany.grafos.impl.PrinterTextImplementation;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;

@@ -33,7 +33,7 @@ public class PrinterLineImplementation implements LineService{
     }
     
     @Override
-    public void printMyself(Graphics2D g) {
+    public void printMyself(Graphics2D g, Position globalOffset) {
         g.setColor(color);
         
         int p1x = lineBounds.getResizedP1().getX();
@@ -57,10 +57,10 @@ public class PrinterLineImplementation implements LineService{
         int xAdder = position.getX() - centerOn.getX();
         int yAdder = position.getY() - centerOn.getY();
         
-        p1x += xAdder + offset.getX();
-        p1y += yAdder + offset.getY();
-        p2x += xAdder + offset.getX();
-        p2y += yAdder + offset.getY();
+        p1x += xAdder + offset.getX() + globalOffset.getX();
+        p1y += yAdder + offset.getY() + globalOffset.getY();
+        p2x += xAdder + offset.getX() + globalOffset.getX();
+        p2y += yAdder + offset.getY() + globalOffset.getY();
         
         printLine(g, p1x, p1y, p2x, p2y);
     }
@@ -129,7 +129,7 @@ public class PrinterLineImplementation implements LineService{
     }
 
     @Override
-    public Position setOffset() {
+    public Position getOffset() {
         return offset;
     }
 
