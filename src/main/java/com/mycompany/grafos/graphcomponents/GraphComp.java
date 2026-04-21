@@ -43,9 +43,9 @@ public class GraphComp implements GraphCompService{
     }
     
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         Position totalOffset = globalOffset.move(position).move(mousePosition);
-        graphPrinter.printMyself(g, totalOffset);
+        graphPrinter.printMyself(totalOffset);
     }
 
     @Override

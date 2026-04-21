@@ -13,11 +13,11 @@ import java.awt.Graphics2D;
  */
 public interface PrinterService {
 
-    public default void printMyself(Graphics2D g)
+    public default void printMyself()
     {
-        printMyself(g, new Position(0,0));
+        printMyself(new Position(0,0));
     }
     
-    public void printMyself(Graphics2D g, Position globalOffset);
+    public void printMyself(Position globalOffset);
     
 }

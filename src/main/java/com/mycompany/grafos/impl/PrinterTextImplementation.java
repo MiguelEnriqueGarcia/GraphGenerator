@@ -42,9 +42,7 @@ public class PrinterTextImplementation implements TextService{
     }
     
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
-        g.setFont(new Font("Arial", Font.PLAIN, (int) (fontSize*size)));
-        
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = (int) (position.getY() + 7*size*(fontSize/12));
         
@@ -64,10 +62,15 @@ public class PrinterTextImplementation implements TextService{
         x += globalOffset.getX();
         y += globalOffset.getY();
         
-        TextCanvasBounds t = new TextCanvasBounds(text, textBounds, x, y, zLayer, size, fontSize, color);
-        Pencil.print(g, t);
+        printText(x, y);
     }
     
+    private void printText(int x, int y){
+        
+        TextCanvasBounds textCanvasBounds = new TextCanvasBounds(text, textBounds, x, y, zLayer, size, fontSize, color);
+        Pencil.print(textCanvasBounds);
+        
+    }
     
     @Override
     public void setPosition(Position position) {

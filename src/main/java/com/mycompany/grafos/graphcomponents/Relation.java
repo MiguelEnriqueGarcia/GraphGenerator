@@ -29,7 +29,7 @@ public class Relation implements RelationService{
     private int weight = 1;
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         Position difference = nextNode.getCenter(globalOffset)
                 .move(lastNode.getCenter(globalOffset).dot(-1))
                 .dot(lastNode.getSize());
@@ -42,7 +42,7 @@ public class Relation implements RelationService{
                 .offset(lastNode.getCenter(globalOffset))
                 .stroke(2*lastNode.getSize())
                 .build();
-        linePrintable.printMyself(g, globalOffset);
+        linePrintable.printMyself(globalOffset);
     }
     
     @Override

@@ -33,7 +33,7 @@ public class PrinterCircleImplementation implements CircleService{
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = position.getY();
         
@@ -50,11 +50,12 @@ public class PrinterCircleImplementation implements CircleService{
             y -= circleBounds.getRy();
         }
         
-        printOval(g, x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getRx(), circleBounds.getRy());
+        printOval(x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getRx(), circleBounds.getRy());
     }
     
-    private void printOval(Graphics2D g, int x, int y, int rx, int ry){
-        Pencil.print(g, new CircleCanvasBounds(x, y, zLayer, rx, ry, color));
+    private void printOval(int x, int y, int rx, int ry){
+        CircleCanvasBounds circleCanvasBounds = new CircleCanvasBounds(x, y, zLayer, rx, ry, color);
+        Pencil.print(circleCanvasBounds);
     }
     
     @Override

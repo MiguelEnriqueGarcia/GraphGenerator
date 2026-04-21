@@ -34,7 +34,7 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = position.getY();
         
@@ -51,12 +51,13 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
             y -= circleBounds.getYSize();
         }
         
-        printRect(g, x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getXSize(), circleBounds.getYSize());
+        printRect(x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getXSize(), circleBounds.getYSize());
     }
     
-    private void printRect(Graphics2D g, int x, int y, int xSize, int ySize){
+    private void printRect(int x, int y, int xSize, int ySize){
         
-        Pencil.print(g, new RectangleCanvasBounds(x, y, zLayer, xSize, ySize, color));
+        RectangleCanvasBounds rectangleCanvasBounds = new RectangleCanvasBounds(x, y, zLayer, xSize, ySize, color);
+        Pencil.print(rectangleCanvasBounds);
         
     }
     

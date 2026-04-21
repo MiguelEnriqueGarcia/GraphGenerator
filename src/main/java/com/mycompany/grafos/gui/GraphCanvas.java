@@ -75,7 +75,7 @@ public class GraphCanvas extends Canvas{
     }
     private void printItem(PrinterService printable){
         Color lastColor = g.getColor();
-        printable.printMyself(g);
+        printable.printMyself();
         g.setColor(lastColor);
     }
     

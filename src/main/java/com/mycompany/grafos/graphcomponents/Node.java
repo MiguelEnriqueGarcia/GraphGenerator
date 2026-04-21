@@ -70,11 +70,11 @@ public class Node implements NodeService {
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         for (RelationService relation : relations) {
-            relation.printMyself(g, globalOffset);
+            relation.printMyself(globalOffset);
         }
-        printable.printMyself(g, globalOffset);
+        printable.printMyself(globalOffset);
     }
     
     @Override
