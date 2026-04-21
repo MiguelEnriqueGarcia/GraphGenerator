@@ -4,6 +4,8 @@
  */
 package com.mycompany.grafos.impl;
 
+import com.mycompany.canvasPrinters.Pencil;
+import com.mycompany.canvasPrinters.bounds.TextCanvasBounds;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.TextAlignment;
@@ -26,11 +28,10 @@ import java.awt.Stroke;
 public class PrinterTextImplementation implements TextService{
     
     private String text = "";
-    private String formattedText = "";
-    private final int INTERLINE_SIZE = 15;
     
     private Color color = Color.RED;
     private Position position = new Position(0, 0);
+    private int zLayer;
     private SimpleAlignment alignment = new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER);
     private TextBounds textBounds = new TextBounds(10, 10);
     
@@ -41,17 +42,7 @@ public class PrinterTextImplementation implements TextService{
     }
     
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
-        g.setColor(color);
-        
-        printText(g, globalOffset);
-    }
-    
-    private void printText(Graphics2D g, Position globalOffset){
-        
-        g.setFont(new Font("Arial", Font.PLAIN, (int) (fontSize*size)));
-        
-        applyFormatToText(g);
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = (int) (position.getY() + 7*size*(fontSize/12));
         
@@ -71,33 +62,14 @@ public class PrinterTextImplementation implements TextService{
         x += globalOffset.getX();
         y += globalOffset.getY();
         
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < formattedText.length(); i++) {
-            char actualChar = formattedText.charAt(i);
-            
-            if (actualChar == '%') {
-                drawString(g, x, y, sb.toString());
-                sb = new StringBuilder();
-                y += INTERLINE_SIZE * size * (fontSize/12);
-            }else{
-                sb.append(actualChar);
-            }
-        }
-    
+        printText(x, y);
     }
     
-    private void applyFormatToText(Graphics2D g) {
-        TextFormatter formatter = new TextFormatter(g.getFontMetrics(), text, textBounds);
+    private void printText(int x, int y){
         
-        if (formatter.isFormattable()) {
-            formattedText = formatter.format();
-        }else{
-            formattedText = "";
-        }
-    }
-    
-    private void drawString(Graphics2D g, int x, int y, String text) {
-        g.drawString(text, x, y);
+        TextCanvasBounds textCanvasBounds = new TextCanvasBounds(text, textBounds, x, y, zLayer, size, fontSize, color);
+        Pencil.print(textCanvasBounds);
+        
     }
     
     @Override
@@ -178,5 +150,13 @@ public class PrinterTextImplementation implements TextService{
     public void resizeFont(double fontSize) {
         this.fontSize = fontSize;
     }
-    
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
+    }
 }

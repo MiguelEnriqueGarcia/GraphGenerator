@@ -12,6 +12,7 @@ import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
 import com.mycompany.grafos.service.Textable;
+import com.mycompany.grafos.service.ZLayerable;
 
 /**
  *
@@ -22,6 +23,7 @@ public interface TextService
         Colorable, 
         Positionable, 
         Alignable, 
+        ZLayerable,
         Boundable, 
         Resizable,
         FontResizable,

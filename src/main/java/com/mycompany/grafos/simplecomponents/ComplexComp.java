@@ -37,9 +37,9 @@ public class ComplexComp implements ComplexCompService{
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         Position totalOffset = globalOffset.move(offset);
-        printers.forEach(p -> p.printMyself(g, totalOffset));
+        printers.forEach(p -> p.printMyself(totalOffset));
     }
 
     @Override

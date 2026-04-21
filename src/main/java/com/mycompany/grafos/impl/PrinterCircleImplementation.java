@@ -4,6 +4,8 @@
  */
 package com.mycompany.grafos.impl;
 
+import com.mycompany.canvasPrinters.Pencil;
+import com.mycompany.canvasPrinters.bounds.CircleCanvasBounds;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.Position;
@@ -22,6 +24,7 @@ public class PrinterCircleImplementation implements CircleService{
 
     private Color color = Color.RED;
     private Position position = new Position(0, 0);
+    private int zLayer;
     private SimpleAlignment alignment = new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER);
     private CircleBounds circleBounds = new CircleBounds(50, 50);
     private double size = 1;
@@ -30,7 +33,7 @@ public class PrinterCircleImplementation implements CircleService{
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = position.getY();
         
@@ -47,12 +50,12 @@ public class PrinterCircleImplementation implements CircleService{
             y -= circleBounds.getRy();
         }
         
-        g.setColor(color);
-        printOval(g, x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getRx(), circleBounds.getRy());
+        printOval(x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getRx(), circleBounds.getRy());
     }
     
-    private void printOval(Graphics2D g, int x, int y, int rx, int ry){
-        g.fillOval(x, y, rx, ry);
+    private void printOval(int x, int y, int rx, int ry){
+        CircleCanvasBounds circleCanvasBounds = new CircleCanvasBounds(x, y, zLayer, rx, ry, color);
+        Pencil.print(circleCanvasBounds);
     }
     
     @Override
@@ -113,6 +116,16 @@ public class PrinterCircleImplementation implements CircleService{
     @Override
     public double getSize() {
         return size;
+    }
+
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
     }
     
 }

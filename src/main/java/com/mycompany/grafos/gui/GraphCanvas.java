@@ -4,6 +4,7 @@
  */
 package com.mycompany.grafos.gui;
 
+import com.mycompany.canvasPrinters.Pencil;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -61,6 +62,8 @@ public class GraphCanvas extends Canvas{
     }
     
     private void startRender() {
+        Pencil.clear();
+        
         g = (Graphics2D) bs.getDrawGraphics();
         g.setColor(backgroundColor);
         g.fillRect(0, 0, getWidth(), getHeight());    
@@ -72,11 +75,13 @@ public class GraphCanvas extends Canvas{
     }
     private void printItem(PrinterService printable){
         Color lastColor = g.getColor();
-        printable.printMyself(g);
+        printable.printMyself();
         g.setColor(lastColor);
     }
     
     private void EndRender(){
+        Pencil.printAll(g);
+        
         g.dispose();
         bs.show();
     }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.grafos.impl;
 
+import com.mycompany.canvasPrinters.Pencil;
+import com.mycompany.canvasPrinters.bounds.RectangleCanvasBounds;
 import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.Position;
@@ -23,6 +25,7 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
 
     private Color color = Color.RED;
     private Position position = new Position(0, 0);
+    private int zLayer;
     private SimpleAlignment alignment = new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER);
     private RectangleBounds circleBounds = new RectangleBounds(50, 50);
     private double size = 1;
@@ -31,7 +34,7 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
     }
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         int x = position.getX();
         int y = position.getY();
         
@@ -48,12 +51,14 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
             y -= circleBounds.getYSize();
         }
         
-        g.setColor(color);
-        printRect(g, x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getXSize(), circleBounds.getYSize());
+        printRect(x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getXSize(), circleBounds.getYSize());
     }
     
-    private void printRect(Graphics2D g, int x, int y, int xSize, int ySize){
-        g.fillRect(x, y, xSize, ySize);
+    private void printRect(int x, int y, int xSize, int ySize){
+        
+        RectangleCanvasBounds rectangleCanvasBounds = new RectangleCanvasBounds(x, y, zLayer, xSize, ySize, color);
+        Pencil.print(rectangleCanvasBounds);
+        
     }
     
     @Override
@@ -115,5 +120,13 @@ public class PrinterRectanglePrinterImplementation implements RectangleService{
     public double getSize() {
         return size;
     }
-    
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
+    }
 }

@@ -29,7 +29,7 @@ public class Relation implements RelationService{
     private int weight = 1;
 
     @Override
-    public void printMyself(Graphics2D g, Position globalOffset) {
+    public void printMyself(Position globalOffset) {
         Position difference = nextNode.getCenter(globalOffset)
                 .move(lastNode.getCenter(globalOffset).dot(-1))
                 .dot(lastNode.getSize());
@@ -37,11 +37,12 @@ public class Relation implements RelationService{
         linePrintable = new LineBuilder()
                 .color(Color.MAGENTA)
                 .bounds(new LineBounds(new Position(0, 0), difference))
+                .zLayer(1000)
                 .alignment(new LineAlignment(LineAlignment.TypeAlignment.FIRST_POSITION))
                 .offset(lastNode.getCenter(globalOffset))
                 .stroke(2*lastNode.getSize())
                 .build();
-        linePrintable.printMyself(g, globalOffset);
+        linePrintable.printMyself(globalOffset);
     }
     
     @Override

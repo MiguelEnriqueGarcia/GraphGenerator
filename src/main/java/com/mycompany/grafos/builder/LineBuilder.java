@@ -13,6 +13,7 @@ import com.mycompany.grafos.service.Alignable;
 import com.mycompany.grafos.service.Boundable;
 import com.mycompany.grafos.service.Colorable;
 import com.mycompany.grafos.service.Positionable;
+import com.mycompany.grafos.service.ZLayerable;
 import java.awt.Color;
 import com.mycompany.grafos.service.compoundService.LineService;
 import java.awt.Stroke;
@@ -65,6 +66,16 @@ public class LineBuilder {
             ((Boundable)printerService).setBounds(bounds);
         }else{
             throw new RuntimeException("Trying to apply bounds to non-boundable printer");
+        }
+        
+        return this;
+    }
+    
+    public LineBuilder zLayer(int zLayer){
+        if (printerService instanceof ZLayerable) {
+            ((ZLayerable)printerService).setZLayer(zLayer);
+        }else{
+            throw new RuntimeException("Trying to apply zLayer to non-zLayerable printer");
         }
         
         return this;

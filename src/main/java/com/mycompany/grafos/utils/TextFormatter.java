@@ -4,6 +4,7 @@
  */
 package com.mycompany.grafos.utils;
 
+import com.mycompany.canvasPrinters.bounds.TextCanvasBounds;
 import com.mycompany.grafos.parts.TextBounds;
 import java.awt.FontMetrics;
 
@@ -19,10 +20,10 @@ public final class TextFormatter {
     
     private Boolean formattable = null;
 
-    public TextFormatter(FontMetrics fm, String text, TextBounds textBounds) {
+    public TextFormatter(FontMetrics fm, TextCanvasBounds bounds) {
         this.fm = fm;
-        this.text = text;
-        this.textBounds = textBounds;
+        this.text = bounds.getOriginalText();
+        this.textBounds = bounds.getTextBounds();
     }
     
     public int getWidth(){
