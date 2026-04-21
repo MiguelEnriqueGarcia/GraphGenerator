@@ -8,18 +8,11 @@ import com.mycompany.canvasPrinters.Pencil;
 import com.mycompany.canvasPrinters.bounds.TextCanvasBounds;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.TextAlignment;
 import com.mycompany.grafos.parts.TextBounds;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.TextService;
-import com.mycompany.grafos.utils.TextFormatter;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
 
 /**
  *

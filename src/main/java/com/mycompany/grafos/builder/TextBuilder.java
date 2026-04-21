@@ -4,12 +4,9 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.simplecomponents.Text;
 import com.mycompany.grafos.impl.PrinterTextImplementation;
 import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.parts.TextBounds;
 import com.mycompany.grafos.service.Alignable;
@@ -18,7 +15,6 @@ import com.mycompany.grafos.service.Colorable;
 import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.ZLayerable;
 import java.awt.Color;
-import com.mycompany.grafos.service.compoundService.CircleService;
 import com.mycompany.grafos.service.compoundService.TextService;
 
 /**

@@ -4,12 +4,9 @@
  */
 package com.mycompany.grafos.simplecomponents;
 
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.service.FontResizable;
-import com.mycompany.grafos.service.Offsetable;
 import com.mycompany.grafos.service.Positionable;
-import java.awt.Graphics2D;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
 import com.mycompany.grafos.service.compoundService.ComplexCompService;

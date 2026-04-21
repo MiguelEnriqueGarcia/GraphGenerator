@@ -12,7 +12,6 @@ import com.mycompany.grafos.service.compoundService.LineService;
 import com.mycompany.grafos.service.compoundService.NodeService;
 import com.mycompany.grafos.service.compoundService.RelationService;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import lombok.experimental.Delegate;
 
 /**

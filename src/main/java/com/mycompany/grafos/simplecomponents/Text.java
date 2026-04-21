@@ -4,7 +4,6 @@
  */
 package com.mycompany.grafos.simplecomponents;
 
-import com.mycompany.grafos.service.compoundService.CircleService;
 import com.mycompany.grafos.service.compoundService.TextService;
 import lombok.experimental.Delegate;
 

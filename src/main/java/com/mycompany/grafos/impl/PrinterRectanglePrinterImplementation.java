@@ -7,14 +7,12 @@ package com.mycompany.grafos.impl;
 import com.mycompany.canvasPrinters.Pencil;
 import com.mycompany.canvasPrinters.bounds.RectangleCanvasBounds;
 import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.CircleBounds;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.parts.RectangleBounds;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.RectangleService;
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 /**
  *

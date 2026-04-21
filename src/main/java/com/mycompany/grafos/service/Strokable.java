@@ -4,7 +4,6 @@
  */
 package com.mycompany.grafos.service;
 
-import java.awt.Stroke;
 
 
 /**

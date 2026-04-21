@@ -4,11 +4,9 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.simplecomponents.Circle;
 import com.mycompany.grafos.simplecomponents.ComplexComp;
 import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.service.PrinterService;
-import java.awt.Color;
 
 /**
  *

@@ -6,18 +6,10 @@ package com.mycompany.grafos.graphcomponents;
 
 import com.mycompany.grafos.builder.ComplexCompBuilder;
 import com.mycompany.grafos.parts.Position;
-import com.mycompany.grafos.service.FontResizable;
-import com.mycompany.grafos.service.Offsetable;
-import com.mycompany.grafos.service.Positionable;
-import com.mycompany.grafos.service.PrinterService;
-import com.mycompany.grafos.service.Resizable;
 import com.mycompany.grafos.service.compoundService.ComplexCompService;
 import com.mycompany.grafos.service.compoundService.GraphCompService;
 import com.mycompany.grafos.service.compoundService.NodeService;
-import com.mycompany.grafos.simplecomponents.ComplexComp;
-import java.awt.Graphics2D;
 import java.util.List;
-import lombok.experimental.Delegate;
 
 /**
  *

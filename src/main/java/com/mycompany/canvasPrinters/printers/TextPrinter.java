@@ -6,8 +6,6 @@ package com.mycompany.canvasPrinters.printers;
 
 import com.mycompany.canvasPrinters.CanvasPrinter;
 import com.mycompany.canvasPrinters.bounds.TextCanvasBounds;
-import com.mycompany.grafos.parts.Position;
-import com.mycompany.grafos.parts.SimpleAlignment;
 import com.mycompany.grafos.utils.TextFormatter;
 import java.awt.Font;
 import java.awt.Graphics2D;

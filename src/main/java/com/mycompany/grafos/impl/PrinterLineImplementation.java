@@ -12,10 +12,7 @@ import com.mycompany.grafos.parts.Position;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.LineService;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
 
 /**
  *

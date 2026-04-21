@@ -16,7 +16,6 @@ import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.ZLayerable;
 import java.awt.Color;
 import com.mycompany.grafos.service.compoundService.LineService;
-import java.awt.Stroke;
 
 /**
  *

@@ -8,14 +8,10 @@ import com.mycompany.canvasPrinters.Pencil;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferStrategy;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JFrame;
 import com.mycompany.grafos.service.PrinterService;
 
 /**

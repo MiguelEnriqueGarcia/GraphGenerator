@@ -4,7 +4,6 @@
  */
 package com.mycompany.canvasPrinters;
 
-import com.mycompany.grafos.service.ZLayerable;
 
 /**
  *

@@ -14,7 +14,6 @@ import com.mycompany.canvasPrinters.printers.RectanglePrinter;
 import com.mycompany.canvasPrinters.printers.TextPrinter;
 import com.mycompany.grafos.service.Colorable;
 import java.awt.Graphics2D;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

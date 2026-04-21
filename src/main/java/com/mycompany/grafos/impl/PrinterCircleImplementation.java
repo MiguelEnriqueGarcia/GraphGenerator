@@ -13,7 +13,6 @@ import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
 import com.mycompany.grafos.service.compoundService.CircleService;
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 /**
  *

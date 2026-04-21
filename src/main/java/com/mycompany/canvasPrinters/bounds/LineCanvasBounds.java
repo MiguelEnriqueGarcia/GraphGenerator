@@ -7,7 +7,6 @@ package com.mycompany.canvasPrinters.bounds;
 import com.mycompany.canvasPrinters.CanvasBounds;
 import com.mycompany.grafos.service.Colorable;
 import java.awt.Color;
-import java.awt.Stroke;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

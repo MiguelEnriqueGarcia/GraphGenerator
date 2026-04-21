@@ -4,7 +4,6 @@
  */
 package com.mycompany.grafos.gui;
 
-import com.mycompany.grafos.service.PrinterService;
 import javax.swing.JFrame;
 
 /**

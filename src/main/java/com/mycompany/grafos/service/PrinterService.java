@@ -5,7 +5,6 @@
 package com.mycompany.grafos.service;
 
 import com.mycompany.grafos.parts.Position;
-import java.awt.Graphics2D;
 
 /**
  *

@@ -7,7 +7,6 @@ package com.mycompany.grafos.parts;
 import com.mycompany.grafos.service.AlignableResizable;
 import com.mycompany.grafos.service.Alignment;
 import com.mycompany.grafos.service.Bounds;
-import com.mycompany.grafos.service.Resizable;
 
 /**
  *
