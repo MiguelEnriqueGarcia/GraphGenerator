@@ -116,12 +116,14 @@ public class Node implements NodeService {
                         .color(Color.GRAY)
                         .alignment(new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER))
                         .bounds(new CircleBounds(radius, radius))
+                        .zLayer(3)
                         .build();
         
         Circle c2 =        new CircleBuilder()
                         .color(color)
                         .alignment(new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER))
                         .bounds(new CircleBounds(radius - (int)(radius*0.1), radius - (int)(radius*0.1)))
+                        .zLayer(2)
                         .build();
 
         
@@ -136,6 +138,7 @@ public class Node implements NodeService {
                         .color(Color.RED)
                         .alignment(new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER))
                         .bounds(new TextBounds((int) (radius*0.70), (int) (radius*0.30)))
+                        .zLayer(1)
                         .build();
         
         ComplexComp complex = new ComplexCompBuilder()

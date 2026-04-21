@@ -10,6 +10,7 @@ import com.mycompany.grafos.service.Colorable;
 import com.mycompany.grafos.service.Positionable;
 import com.mycompany.grafos.service.PrinterService;
 import com.mycompany.grafos.service.Resizable;
+import com.mycompany.grafos.service.ZLayerable;
 
 /**
  *
@@ -20,6 +21,7 @@ public interface RectangleService
         Colorable, 
         Positionable, 
         Alignable, 
+        ZLayerable,
         Boundable, 
         Resizable{ 
 }

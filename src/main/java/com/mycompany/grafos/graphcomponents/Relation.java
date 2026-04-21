@@ -37,6 +37,7 @@ public class Relation implements RelationService{
         linePrintable = new LineBuilder()
                 .color(Color.MAGENTA)
                 .bounds(new LineBounds(new Position(0, 0), difference))
+                .zLayer(1000)
                 .alignment(new LineAlignment(LineAlignment.TypeAlignment.FIRST_POSITION))
                 .offset(lastNode.getCenter(globalOffset))
                 .stroke(2*lastNode.getSize())

@@ -4,6 +4,8 @@
  */
 package com.mycompany.grafos.impl;
 
+import com.mycompany.canvasPrinters.Pencil;
+import com.mycompany.canvasPrinters.bounds.LineCanvasBounds;
 import com.mycompany.grafos.parts.LineAlignment;
 import com.mycompany.grafos.parts.LineBounds;
 import com.mycompany.grafos.parts.Position;
@@ -23,6 +25,7 @@ public class PrinterLineImplementation implements LineService{
 
     private Color color = Color.RED;
     private Position position = new Position(0, 0);
+    private int zLayer;
     private Position offset = new Position(0, 0);
     private LineAlignment alignment = new LineAlignment(LineAlignment.TypeAlignment.CENTER);
     private LineBounds lineBounds = new LineBounds(new Position(0, 0), new Position(1, 1));
@@ -66,13 +69,9 @@ public class PrinterLineImplementation implements LineService{
     }
     
     private void printLine(Graphics2D g, int p1x, int p1y, int p2x, int p2y){
-        Stroke lastStroke = g.getStroke();
         
-        g.setStroke(new BasicStroke((float) (stroke*size)));
+        Pencil.print(g, new LineCanvasBounds(p1x, p1y, p2x, p2y, zLayer, stroke, size, color));
         
-        g.drawLine(p1x, p1y, p2x, p2y);
-        
-        g.setStroke(lastStroke);
     }
     
     @Override
@@ -154,5 +153,13 @@ public class PrinterLineImplementation implements LineService{
     public void setStroke(double stroke) {
         this.stroke = stroke;
     }
-    
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
+    }
 }
