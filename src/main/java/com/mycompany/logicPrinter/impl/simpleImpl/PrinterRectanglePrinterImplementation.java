@@ -1,0 +1,130 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.logicPrinter.impl.simpleImpl;
+
+import com.mycompany.canvasPrinter.Pencil;
+import com.mycompany.canvasPrinter.bounds.RectangleCanvasBounds;
+import com.mycompany.logicPrinter.part.alignment.SimpleAlignment;
+import com.mycompany.logicPrinter.part.Position;
+import com.mycompany.logicPrinter.part.bound.RectangleBounds;
+import com.mycompany.logicPrinter.model.marker.Alignment;
+import com.mycompany.logicPrinter.model.marker.Bounds;
+import com.mycompany.logicPrinter.model.service.simpleService.RectangleService;
+import java.awt.Color;
+
+/**
+ *
+ * @author migue
+ */
+
+public class PrinterRectanglePrinterImplementation implements RectangleService{
+
+    private Color color = Color.RED;
+    private Position position = new Position(0, 0);
+    private int zLayer;
+    private SimpleAlignment alignment = new SimpleAlignment(SimpleAlignment.HorizontalAlignment.CENTER, SimpleAlignment.VerticalAlignment.CENTER);
+    private RectangleBounds circleBounds = new RectangleBounds(50, 50);
+    private double size = 1;
+    
+    public PrinterRectanglePrinterImplementation() {
+    }
+
+    @Override
+    public void printMyself(Position globalOffset) {
+        int x = position.getX();
+        int y = position.getY();
+        
+        if (alignment.getHorizontalAlignment() == SimpleAlignment.HorizontalAlignment.CENTER) {
+            x -= circleBounds.getXSize()/2;
+        }
+        if (alignment.getHorizontalAlignment() == SimpleAlignment.HorizontalAlignment.RIGHT) {
+            x -= circleBounds.getXSize();
+        }
+        if (alignment.getVerticalAlignment()== SimpleAlignment.VerticalAlignment.CENTER) {
+            y -= circleBounds.getYSize()/2;
+        }
+        if (alignment.getVerticalAlignment() == SimpleAlignment.VerticalAlignment.BOTTOM) {
+            y -= circleBounds.getYSize();
+        }
+        
+        printRect(x+globalOffset.getX(), y+globalOffset.getY(), circleBounds.getXSize(), circleBounds.getYSize());
+    }
+    
+    private void printRect(int x, int y, int xSize, int ySize){
+        
+        RectangleCanvasBounds rectangleCanvasBounds = new RectangleCanvasBounds(x, y, zLayer, xSize, ySize, color);
+        Pencil.print(rectangleCanvasBounds);
+        
+    }
+    
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setAlignment(Alignment alignment) {
+        if (alignment instanceof SimpleAlignment) {
+            this.alignment = (SimpleAlignment) alignment;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect Alignment to a Circle Printer Implementation");
+        }
+    }
+    
+    @Override
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    @Override
+    public Bounds getBounds() {
+        return circleBounds;
+    }
+
+    @Override
+    public void setBounds(Bounds bounds) {
+        if (bounds instanceof RectangleBounds) {
+            this.circleBounds = (RectangleBounds) bounds;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect bounds to a Circle Printer Implementation");
+        }
+    }
+
+    @Override
+    public void resize(double factor) {
+        circleBounds.resize(factor);
+        
+        this.size = factor;
+    }
+
+    @Override
+    public double getSize() {
+        return size;
+    }
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
+    }
+}

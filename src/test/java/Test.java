@@ -1,14 +1,14 @@
 
-import com.mycompany.grafos.simplecomponents.Circle;
-import com.mycompany.grafos.builder.CircleBuilder;
-import com.mycompany.grafos.gui.GraphCanvas;
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.CircleBounds;
-import com.mycompany.grafos.parts.Position;
+import com.mycompany.logicPrinter.component.simpleComponent.Circle;
+import com.mycompany.logicPrinter.builder.simpleBuilder.CircleBuilder;
+import com.mycompany.gui.GraphCanvas;
+import com.mycompany.logicPrinter.impl.simpleImpl.PrinterCircleImplementation;
+import com.mycompany.logicPrinter.part.alignment.SimpleAlignment;
+import com.mycompany.logicPrinter.part.bound.CircleBounds;
+import com.mycompany.logicPrinter.part.Position;
 import java.awt.Color;
-import com.mycompany.grafos.service.PrinterService;
-import com.mycompany.grafos.service.compoundService.CircleService;
+import com.mycompany.logicPrinter.model.service.simpleService.CircleService;
+import com.mycompany.logicPrinter.model.contract.Printable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,7 +21,7 @@ import com.mycompany.grafos.service.compoundService.CircleService;
  */
 public class Test {
     public static void main(String[] args) {
-        PrinterService[] printables = new PrinterService[2];
+        Printable[] printables = new Printable[2];
 
         printables[0] = 
                 new CircleBuilder()

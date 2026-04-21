@@ -1,35 +1,35 @@
 
-import com.mycompany.grafos.simplecomponents.Circle;
-import com.mycompany.grafos.builder.CircleBuilder;
-import com.mycompany.grafos.builder.ComplexCompBuilder;
-import com.mycompany.grafos.builder.LineBuilder;
+import com.mycompany.logicPrinter.component.simpleComponent.Circle;
+import com.mycompany.logicPrinter.builder.simpleBuilder.CircleBuilder;
+import com.mycompany.logicPrinter.builder.compoundBuilder.ComplexCompBuilder;
+import com.mycompany.logicPrinter.builder.simpleBuilder.LineBuilder;
 import com.mycompany.grafos.builder.NodeBuilder;
-import com.mycompany.grafos.builder.RectangleBuilder;
+import com.mycompany.logicPrinter.builder.simpleBuilder.RectangleBuilder;
 import com.mycompany.grafos.builder.RelationBuilder;
-import com.mycompany.grafos.builder.TextBuilder;
-import com.mycompany.grafos.graphcomponents.GraphComp;
-import com.mycompany.grafos.graphcomponents.Node;
-import com.mycompany.grafos.gui.GraphCanvas;
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.simplecomponents.ComplexComp;
-import com.mycompany.grafos.simplecomponents.Line;
-import com.mycompany.grafos.simplecomponents.Rectangle;
-import com.mycompany.grafos.simplecomponents.Text;
-import com.mycompany.grafos.gui.PrincipalFrame;
-import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.CircleBounds;
-import com.mycompany.grafos.parts.LineAlignment;
-import com.mycompany.grafos.parts.LineBounds;
-import com.mycompany.grafos.parts.Position;
-import com.mycompany.grafos.parts.RectangleBounds;
-import com.mycompany.grafos.parts.TextBounds;
+import com.mycompany.logicPrinter.builder.simpleBuilder.TextBuilder;
+import com.mycompany.grafos.impl.GraphCompImplementation;
+import com.mycompany.grafos.impl.NodeImplementation;
+import com.mycompany.gui.GraphCanvas;
+import com.mycompany.logicPrinter.impl.simpleImpl.PrinterCircleImplementation;
+import com.mycompany.logicPrinter.impl.compoundImpl.ComplexCompImplementation;
+import com.mycompany.logicPrinter.component.simpleComponent.Line;
+import com.mycompany.logicPrinter.component.simpleComponent.Rectangle;
+import com.mycompany.logicPrinter.component.simpleComponent.Text;
+import com.mycompany.gui.PrincipalFrame;
+import com.mycompany.logicPrinter.part.alignment.SimpleAlignment;
+import com.mycompany.logicPrinter.part.bound.CircleBounds;
+import com.mycompany.logicPrinter.part.alignment.LineAlignment;
+import com.mycompany.logicPrinter.part.bound.LineBounds;
+import com.mycompany.logicPrinter.part.Position;
+import com.mycompany.logicPrinter.part.bound.RectangleBounds;
+import com.mycompany.logicPrinter.part.bound.TextBounds;
 import java.awt.Color;
-import com.mycompany.grafos.service.PrinterService;
-import com.mycompany.grafos.service.compoundService.NodeService;
-import com.mycompany.grafos.service.compoundService.RelationService;
+import com.mycompany.grafos.service.NodeService;
+import com.mycompany.grafos.service.RelationService;
 import java.awt.BasicStroke;
 import java.util.LinkedList;
 import java.util.List;
+import com.mycompany.logicPrinter.model.contract.Printable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class Test012_1 {
     public static void main(String[] args) {
-        PrinterService[] printables = new PrinterService[1];
+        Printable[] printables = new Printable[1];
         
         List<NodeService> nodes = new LinkedList<>(){{
             
@@ -104,7 +104,7 @@ public class Test012_1 {
             
         }};
         
-        GraphComp graph = new GraphComp(nodes);
+        GraphCompImplementation graph = new GraphCompImplementation(nodes);
         
         
         printables[0] = graph;

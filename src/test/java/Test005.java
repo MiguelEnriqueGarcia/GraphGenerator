@@ -1,21 +1,21 @@
 
-import com.mycompany.grafos.simplecomponents.Circle;
-import com.mycompany.grafos.builder.CircleBuilder;
-import com.mycompany.grafos.builder.ComplexCompBuilder;
-import com.mycompany.grafos.builder.LineBuilder;
-import com.mycompany.grafos.gui.GraphCanvas;
-import com.mycompany.grafos.impl.PrinterCircleImplementation;
-import com.mycompany.grafos.simplecomponents.ComplexComp;
-import com.mycompany.grafos.simplecomponents.Line;
-import com.mycompany.grafos.gui.PrincipalFrame;
-import com.mycompany.grafos.parts.SimpleAlignment;
-import com.mycompany.grafos.parts.CircleBounds;
-import com.mycompany.grafos.parts.LineAlignment;
-import com.mycompany.grafos.parts.LineBounds;
-import com.mycompany.grafos.parts.Position;
+import com.mycompany.logicPrinter.component.simpleComponent.Circle;
+import com.mycompany.logicPrinter.builder.simpleBuilder.CircleBuilder;
+import com.mycompany.logicPrinter.builder.compoundBuilder.ComplexCompBuilder;
+import com.mycompany.logicPrinter.builder.simpleBuilder.LineBuilder;
+import com.mycompany.gui.GraphCanvas;
+import com.mycompany.logicPrinter.impl.simpleImpl.PrinterCircleImplementation;
+import com.mycompany.logicPrinter.impl.compoundImpl.ComplexCompImplementation;
+import com.mycompany.logicPrinter.component.simpleComponent.Line;
+import com.mycompany.gui.PrincipalFrame;
+import com.mycompany.logicPrinter.part.alignment.SimpleAlignment;
+import com.mycompany.logicPrinter.part.bound.CircleBounds;
+import com.mycompany.logicPrinter.part.alignment.LineAlignment;
+import com.mycompany.logicPrinter.part.bound.LineBounds;
+import com.mycompany.logicPrinter.part.Position;
 import java.awt.Color;
-import com.mycompany.grafos.service.PrinterService;
 import java.awt.BasicStroke;
+import com.mycompany.logicPrinter.model.contract.Printable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -28,7 +28,7 @@ import java.awt.BasicStroke;
  */
 public class Test005 {
     public static void main(String[] args) {
-        PrinterService[] printables = new PrinterService[1];
+        Printable[] printables = new Printable[1];
 
         
         Circle c1 =         new CircleBuilder()
@@ -62,8 +62,8 @@ public class Test005 {
                 .addPrinter(l1)
                 .build();
         
-        ((ComplexComp)printables[0]).resize(2);
-        ((ComplexComp)printables[0]).setPosition(new Position(300, 300));
+        ((ComplexCompImplementation)printables[0]).resize(2);
+        ((ComplexCompImplementation)printables[0]).setPosition(new Position(300, 300));
         
         GraphCanvas g = new GraphCanvas(printables);
         

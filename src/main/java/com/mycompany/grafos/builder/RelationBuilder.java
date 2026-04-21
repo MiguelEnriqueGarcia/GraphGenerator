@@ -4,10 +4,11 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.exception.BuildingError;
-import com.mycompany.grafos.graphcomponents.Relation;
-import com.mycompany.grafos.service.compoundService.NodeService;
-import com.mycompany.grafos.service.compoundService.RelationService;
+import com.mycompany.grafos.component.Relation;
+import com.mycompany.logicPrinter.exception.BuildingLogicPrinterError;
+import com.mycompany.grafos.impl.RelationImplementation;
+import com.mycompany.grafos.service.NodeService;
+import com.mycompany.grafos.service.RelationService;
 
 /**
  *
@@ -17,7 +18,7 @@ public class RelationBuilder {
     private RelationService relation;
 
     public RelationBuilder() {
-        this.relation = new Relation();
+        this.relation = new RelationImplementation();
     }
     
     public RelationBuilder lastNode(NodeService node){
@@ -38,12 +39,12 @@ public class RelationBuilder {
         return this;
     }
     
-    public RelationService build(){
+    public Relation build(){
         
         if (relation.getLastNode() == null || relation.getNextNode() == null) {
-            throw new BuildingError();
+            throw new BuildingLogicPrinterError();
         }
         
-        return relation;
+        return new Relation(relation);
     }
 }

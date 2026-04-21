@@ -1,0 +1,161 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.logicPrinter.impl.simpleImpl;
+
+import com.mycompany.canvasPrinter.Pencil;
+import com.mycompany.canvasPrinter.bounds.LineCanvasBounds;
+import com.mycompany.logicPrinter.part.alignment.LineAlignment;
+import com.mycompany.logicPrinter.part.bound.LineBounds;
+import com.mycompany.logicPrinter.part.Position;
+import com.mycompany.logicPrinter.model.marker.Alignment;
+import com.mycompany.logicPrinter.model.marker.Bounds;
+import com.mycompany.logicPrinter.model.service.simpleService.LineService;
+import java.awt.Color;
+
+/**
+ *
+ * @author migue
+ */
+public class PrinterLineImplementation implements LineService{
+
+    private Color color = Color.RED;
+    private Position position = new Position(0, 0);
+    private int zLayer;
+    private Position offset = new Position(0, 0);
+    private LineAlignment alignment = new LineAlignment(LineAlignment.TypeAlignment.CENTER);
+    private LineBounds lineBounds = new LineBounds(new Position(0, 0), new Position(1, 1));
+    private double size = 1;
+    private double stroke = 1;
+    
+    public PrinterLineImplementation() {
+    }
+    
+    @Override
+    public void printMyself(Position globalOffset) {
+        
+        int p1x = lineBounds.getResizedP1().getX();
+        int p1y = lineBounds.getResizedP1().getY();
+        int p2x = lineBounds.getResizedP2().getX();
+        int p2y = lineBounds.getResizedP2().getY();
+        
+        
+        Position centerOn = new Position(0,0);
+        if (alignment.getTypeAlignment()== LineAlignment.TypeAlignment.FIRST_POSITION) {
+            centerOn = lineBounds.getResizedP1();
+        }else if (alignment.getTypeAlignment()== LineAlignment.TypeAlignment.SECOND_POSITION) {
+            centerOn = lineBounds.getResizedP2();
+        }else if (alignment.getTypeAlignment()== LineAlignment.TypeAlignment.CENTER) {
+            centerOn = new Position(
+                    (p1x+p2x)/2,
+                    (p1y+p2y)/2
+            );
+        }
+        
+        int xAdder = position.getX() - centerOn.getX();
+        int yAdder = position.getY() - centerOn.getY();
+        
+        p1x += xAdder + offset.getX() + globalOffset.getX();
+        p1y += yAdder + offset.getY() + globalOffset.getY();
+        p2x += xAdder + offset.getX() + globalOffset.getX();
+        p2y += yAdder + offset.getY() + globalOffset.getY();
+        
+        printLine(p1x, p1y, p2x, p2y);
+    }
+    
+    private void printLine(int p1x, int p1y, int p2x, int p2y){
+        LineCanvasBounds lineCanvasBounds = new LineCanvasBounds(p1x, p1y, p2x, p2y, zLayer, stroke, size, color);
+        Pencil.print(lineCanvasBounds);
+        
+    }
+    
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public Bounds getBounds() {
+        return lineBounds;
+    }
+
+    @Override
+    public void setBounds(Bounds bounds) {
+        if (bounds instanceof LineBounds) {
+            this.lineBounds = (LineBounds) bounds;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect bounds to a Line Printer Implementation");
+        }
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public Alignment getAlignment() {
+        return alignment;
+    }
+
+    @Override
+    public void setAlignment(Alignment alignment) {
+        if (alignment instanceof LineAlignment) {
+            this.alignment = (LineAlignment) alignment;
+        }else{
+            throw new RuntimeException("Trying to apply incorrect Alignment to a Line Printer Implementation");
+        }
+    }
+
+    @Override
+    public void setOffset(Position offset) {
+        this.offset = offset;
+    }
+
+    @Override
+    public Position getOffset() {
+        return offset;
+    }
+
+    @Override
+    public void resize(double factor) {
+        lineBounds.resize(factor, alignment);
+        offset.resize(factor);
+        this.size = factor;
+    }
+
+    @Override
+    public double getSize() {
+        return this.size;
+    }
+
+    @Override
+    public double getStroke() {
+        return stroke;
+    }
+
+    @Override
+    public void setStroke(double stroke) {
+        this.stroke = stroke;
+    }
+    @Override
+    public void setZLayer(int zLayer) {
+        this.zLayer = zLayer;
+    }
+
+    @Override
+    public int getZLayer() {
+        return zLayer;
+    }
+}

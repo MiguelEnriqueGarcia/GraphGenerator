@@ -4,10 +4,11 @@
  */
 package com.mycompany.grafos.builder;
 
-import com.mycompany.grafos.graphcomponents.Node;
-import com.mycompany.grafos.parts.Position;
-import com.mycompany.grafos.service.compoundService.NodeService;
-import com.mycompany.grafos.service.compoundService.RelationService;
+import com.mycompany.grafos.component.Node;
+import com.mycompany.grafos.impl.NodeImplementation;
+import com.mycompany.logicPrinter.part.Position;
+import com.mycompany.grafos.service.NodeService;
+import com.mycompany.grafos.service.RelationService;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class NodeBuilder {
     private List<RelationService> relations;
 
     public NodeBuilder() {
-        node = new Node();
+        node = new NodeImplementation();
         relations = new LinkedList<>();
     }
     
@@ -72,10 +73,10 @@ public class NodeBuilder {
         
         return this;
     }
-    public NodeService build(){
+    public Node build(){
         node.setRelations(relations);
         
-        return node;
+        return new Node(node);
     }
     
 }
